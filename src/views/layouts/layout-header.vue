@@ -7,7 +7,7 @@
     <div class="info">
       <img src="~@assets/icons/avatar.svg" alt="avatar" class="avatar" @click="isMenuShowed = !isMenuShowed">
       <div class="container-info">
-        <span class="name-info">annaivanova</span>
+        <span class="name-info">andrew evseev</span>
         <span class="quit" @click="logout">выйти</span>
       </div>
     </div>
@@ -20,9 +20,9 @@ import {Options, Vue} from 'vue-property-decorator'
 @Options({
   name: 'layout-header',
 })
-export default class LayoutHeaderUser extends Vue {
+export default class LayoutHeader extends Vue {
   logout() {
-    this.$router.push({name: 'login'})
+    alert('you got out')
   }
 }
 </script>

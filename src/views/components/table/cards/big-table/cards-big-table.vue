@@ -49,9 +49,14 @@
 import {Vue, Options, Prop, Emit} from 'vue-property-decorator'
 import {ServiceCardType} from '@/store'
 import CardsBigTableItem from '@views/components/table/cards/big-table/cards-big-table-item.vue'
+import Pagination from '@views/components/pagination.vue'
 
 @Options({
   name: 'cards-big-table',
+  components: {
+    Pagination,
+    CardsBigTableItem
+  }
 })
 export default class CardsBigTable extends Vue {
   @Prop() activePage!: number

@@ -33,11 +33,14 @@ import {Vue, Options, Prop, Emit} from 'vue-property-decorator'
 import {ServiceCardType} from '@/store'
 import {Search} from '@element-plus/icons'
 import CardsSmallTableItem from '@views/components/table/cards/small-table/cards-small-table-item.vue'
+import Pagination from '@views/components/pagination.vue'
 
 @Options({
   name: 'cards-small-table',
   components: {
-    Search
+    Search,
+    Pagination,
+    CardsSmallTableItem
   }
 })
 export default class CardsSmallTable extends Vue {

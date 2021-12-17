@@ -16,8 +16,7 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-property-decorator'
 import {
-  EMPLOYEES_WITH_MODAL, EMPLOYEES_WITHOUT_MODAL,
-  POINTS, REFERENCE_SHOP_BOOKS, SERVICE_CARDS, UI_COMPONENTS
+  EMPLOYEES_WITH_MODAL, EMPLOYEES_WITHOUT_MODAL, SERVICE_CARDS
 } from '@/router/routerNames'
 import {Postcard, SetUp} from '@element-plus/icons'
 
@@ -29,12 +28,9 @@ import {Postcard, SetUp} from '@element-plus/icons'
   }
 })
 export default class LayoutSidebar extends Vue {
-  Points = POINTS
   EmployeesWithModal = EMPLOYEES_WITH_MODAL
   EmployeesWithoutModal = EMPLOYEES_WITHOUT_MODAL
-  ReferenceShopBooks = REFERENCE_SHOP_BOOKS
   ServiceCards = SERVICE_CARDS
-  UiComponents = UI_COMPONENTS
 }
 </script>
 

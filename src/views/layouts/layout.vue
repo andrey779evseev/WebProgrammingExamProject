@@ -15,8 +15,14 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import LayoutSidebar from '@layouts/layout-sidebar.vue'
+import LayoutHeader from '@layouts/layout-header.vue'
 @Options({
-  name: 'layout'
+  name: 'layout',
+  components: {
+    LayoutHeader,
+    LayoutSidebar
+  }
 })
 export default class Layout extends Vue {
 }
@@ -26,18 +32,14 @@ export default class Layout extends Vue {
 <style lang="less">
 body {
   @font-face {
-    font-family: ProximaNova;
-    src: url("~@assets/styles/proxima-nova/fonts/ProximaNova-Regular.eot?dsqk3s#iefix")
-        format("embedded-opentype"),
-      url("~@assets/styles/proxima-nova/fonts/ProximaNova-Regular.ttf?dsqk3s")
-        format("truetype"),
-      url("~@assets/styles/proxima-nova/fonts/ProximaNova-Regular.woff?dsqk3s")
-        format("woff");
+    font-family: Gilroy;
+    //noinspection CssUnknownTarget
+    src: url("~@assets/fonts/Gilroy/Gilroy-Regular.ttf");
     font-weight: 100;
     font-style: normal;
   }
   margin: 0;
-  font-family: ProximaNova;
+  font-family: Gilroy,serif;
   font-style: normal;
   font-weight: normal;
 }

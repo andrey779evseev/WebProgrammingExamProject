@@ -37,6 +37,10 @@ import EmployeesSmallTableItem from '@views/components/table/employees/small-tab
 
 @Options({
   name: 'small-table',
+  components: {
+    Pagination,
+    EmployeesSmallTableItem
+  }
 })
 export default class EmployeesSmallTable extends Vue {
   @Prop() employeePage!: number

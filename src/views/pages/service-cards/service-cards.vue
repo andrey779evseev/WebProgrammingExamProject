@@ -51,15 +51,18 @@
 
 <script lang="ts">
 import {Vue, Options} from 'vue-property-decorator'
-import Pagination from '@views/components/pagination.vue'
 import {ServiceCardType} from '@/store'
-import {DeleteFilled, Plus, Search} from '@element-plus/icons'
-import CardsBigTable from '@views/components/table/cards/big-table/cards-big-table.vue'
-import CardsSmallTable from '@views/components/table/cards/small-table/cards-small-table.vue'
 import CardsModal from '@views/components/table/cards/cards-modal.vue'
+import CardsSmallTable from '@views/components/table/cards/small-table/cards-small-table.vue'
+import CardsBigTable from '@views/components/table/cards/big-table/cards-big-table.vue'
 
 @Options({
-  name: 'service-cards'
+  name: 'service-cards',
+  components: {
+    CardsModal,
+    CardsSmallTable,
+    CardsBigTable
+  }
 })
 export default class ServiceCards extends Vue {
   activePage: number = 1

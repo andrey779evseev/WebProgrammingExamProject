@@ -40,9 +40,15 @@
 <script lang="ts">
 import {Vue, Options, Prop, Emit} from 'vue-property-decorator'
 import {EmployeeType} from '@/store'
+import Pagination from '@views/components/pagination.vue'
+import EmployeesBigTableItem from '@views/components/table/employees/big-table/employees-big-table-item.vue'
 
 @Options({
   name: 'employees-big-table',
+  components: {
+    Pagination,
+    EmployeesBigTableItem
+  }
 })
 export default class EmployeesBigTable extends Vue {
   @Prop() employeePage!: number

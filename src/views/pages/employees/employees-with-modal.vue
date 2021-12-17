@@ -43,9 +43,17 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-property-decorator'
 import {EmployeeType} from '@/store'
+import EmployeesModal from '@views/components/table/employees/employees-modal.vue'
+import EmployeesSmallTable from '@views/components/table/employees/small-table/employees-small-table.vue'
+import EmployeesBigTable from '@views/components/table/employees/big-table/employees-big-table.vue'
 
 @Options({
-  name: 'employees-with-modal'
+  name: 'employees-with-modal',
+  components: {
+    EmployeesModal,
+    EmployeesSmallTable,
+    EmployeesBigTable
+  }
 })
 export default class EmployeesWithModal extends Vue {
   activePage: number = 1

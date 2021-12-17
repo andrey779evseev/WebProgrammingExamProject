@@ -34,13 +34,16 @@
 
 <script lang="ts">
 import {Options, Vue} from 'vue-property-decorator'
-import {ElSelectV2} from 'element-plus'
 import EmployeesSmallTable from '@views/components/table/employees/small-table/employees-small-table.vue'
 import EmployeesBigTable from '@views/components/table/employees/big-table/employees-big-table.vue'
 
 
 @Options({
-  name: 'employees-without-modal'
+  name: 'employees-without-modal',
+  components: {
+    EmployeesBigTable,
+    EmployeesSmallTable
+  }
 })
 export default class EmployeesWithoutModal extends Vue {
   activePage: number = 1
