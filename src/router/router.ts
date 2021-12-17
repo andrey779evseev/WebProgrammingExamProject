@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {createRouter, createMemoryHistory, RouteRecordRaw} from 'vue-router'
 import EmployeesWithModal from '@views/pages/employees/employees-with-modal.vue'
 import {
   EDITOR_CREATE_EMPLOYEE,
@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createMemoryHistory(process.env.BASE_URL),
   routes,
 })
 
