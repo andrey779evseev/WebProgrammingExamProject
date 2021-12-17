@@ -1,77 +1,35 @@
-//#region import
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import LoginPage from '@/views/pages/login/login.vue'
-import ErrorPageComponent from '@views/pages/error404/error404.vue'
-import ReferenceShopBooks from '@views/pages/reference-shop-books/reference-shop-books.vue'
 import EmployeesWithModal from '@views/pages/employees/employees-with-modal.vue'
-import Points from '@views/pages/points/points.vue'
 import {
-  DEFAULT,
   EDITOR_CREATE_EMPLOYEE,
   EMPLOYEES_WITH_MODAL,
   EMPLOYEES_WITHOUT_MODAL,
-  LOGIN,
-  POINTS,
-  REFERENCE_SHOP_BOOKS,
   SERVICE_CARDS,
-  UI_COMPONENTS
 } from './routerNames'
 import EmployeesWithoutModal from '@views/pages/employees/employees-without-modal.vue'
 import EditOrCreateEmployee from '@views/pages/employees/edit-or-create-employee.vue'
 import ServiceCards from '@views/pages/service-cards/service-cards.vue'
-import UiComponents from '@views/pages/ui-components/ui-components.vue'
-//#region Admin
 const Layout = () => import('@/views/layouts/layout.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
-    name: LOGIN,
-    path: '/login',
-    component: LoginPage,
-    meta: {
-      title: 'Авторизация',
-      allowAnonymous: true,
-      middleware: [
-      ]
-    }
-  },
-  {
-    name: DEFAULT,
+    name: 'home',
     path: '/',
-    redirect: 'login'
+    redirect: '/employees-with-modal'
   },
   {
     path: '/',
     component: Layout,
-    meta: {
-      title: '',
-      middleware: [
-      ]
-    },
     children: [
       {
         path: 'employees-with-modal',
         name: EMPLOYEES_WITH_MODAL,
-        component: EmployeesWithModal,
-        meta: {title: 'Сотрудники c модыльным окном'}
-      },
-      {
-        name: REFERENCE_SHOP_BOOKS,
-        path: 'reference-shop-books',
-        component: ReferenceShopBooks,
-        meta: {title: 'Справочник магазинов'}
-      },
-      {
-        name: POINTS,
-        path: 'points',
-        component: Points,
-        meta: {title: 'Точки'}
+        component: EmployeesWithModal
       },
       {
         path: 'employees-without-modal',
         name: EMPLOYEES_WITHOUT_MODAL,
-        component: EmployeesWithoutModal,
-        meta: {title: 'Сотрудники без модального окна'}
+        component: EmployeesWithoutModal
       },
       {
         path: 'edit-or-create-employee',
@@ -82,17 +40,12 @@ const routes: Array<RouteRecordRaw> = [
         path: 'service-cards',
         name: SERVICE_CARDS,
         component: ServiceCards,
-      },
-      {
-        path: 'ui-components',
-        name: UI_COMPONENTS,
-        component: UiComponents,
       }
     ],
   },
 
 
-  {path: '/:pathMatch(.*)*', component: ErrorPageComponent},
+  {path: '/:pathMatch(.*)*', redirect: '/'},
 ]
 
 const router = createRouter({

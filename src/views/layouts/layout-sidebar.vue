@@ -1,12 +1,6 @@
 <template>
   <div class="sidebar" :class="{ 'show': $store.getters.isSidebarShowed }">
     <nav>
-      <router-link class="menu-item" :to="{ name: ReferenceShopBooks }">
-        <img src="~@assets/icons/shop.svg" alt="shop" class="icon"><span class="name">Спрвочник магазинов</span>
-      </router-link>
-      <router-link class="menu-item" :to="{ name: Points }">
-        <img src="~@assets/icons/earth.svg" alt="earth" class="icon"><span class="name">Точки</span>
-      </router-link>
       <router-link class="menu-item" :to="{ name: EmployeesWithModal }">
         <img src="~@assets/icons/people.svg" alt="people" class="icon"><span class="name">Сотрудники (модальное)</span>
       </router-link>
@@ -15,9 +9,6 @@
       </router-link>
       <router-link class="menu-item" :to="{ name: ServiceCards }">
         <el-icon class="icon"><postcard /></el-icon><span class="name">Служебные карточки</span>
-      </router-link>
-      <router-link class="menu-item" :to="{ name: UiComponents }">
-        <el-icon class="icon"><set-up /></el-icon><span class="name">UI компоненты</span>
       </router-link>
     </nav>
   </div>
