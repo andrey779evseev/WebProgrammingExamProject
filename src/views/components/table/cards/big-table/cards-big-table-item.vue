@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-cell" style="display: flex; justify-content:center; align-items:center;">
-      <img :src="getSrc(card.photo)" :alt="card.name" height="35">
+      <img :src="getSrc(card.photo)" alt="" height="35">
     </div>
     <span class="col-cell">{{ card.id }}</span>
     <span class="col-cell">{{ card.name }}</span>
@@ -12,10 +12,10 @@
     <span class="col-cell">{{ card.experience }}</span>
     <span class="col-cell">{{ card.university }}</span>
     <button class="col-cell-square" style="margin-right: 1px;" @click="changeCard({...card});changeIsModalShowed(true);;">
-      <img src="~@assets/icons/edit.svg" alt="edit">
+      <img src="~@assets/icons/edit.svg" alt="">
     </button>
     <button class="col-cell-square" @click="changeDeleteDialog(true);changeDeleteIndex(index);changeDeleteName(card.name)">
-      <img src="~@assets/icons/trash.svg" alt="trash">
+      <img src="~@assets/icons/trash.svg" alt="">
     </button>
   </div>
 </template>
@@ -43,13 +43,11 @@ export default class CardsBigTableItem extends Vue {
 <style scoped lang="less">
 .row {
   display: flex;
-  height: 35px;
   margin-top: 1px;
 
   .col-cell-square {
     background: #E6EAF6;
     width: 35px;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,13 +69,11 @@ export default class CardsBigTableItem extends Vue {
     margin-right: 1px;
     font-size: 14px;
     color: #3B4272;
-    height: 100%;
     display: flex;
     align-items: center;
     padding: 5px;
-    width: calc((100% - 70px) / 9);
-    overflow-x: auto;
-    white-space: nowrap;
+    flex: 1;
+    word-break: break-all;
   }
 }
 </style>

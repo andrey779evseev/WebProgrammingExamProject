@@ -54,7 +54,13 @@ export default class AppComponent extends Vue {
 }
 button {
   cursor: pointer;
-  border: 0;
+  border: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+input {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
 }
 </style>

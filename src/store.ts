@@ -24,6 +24,18 @@ export interface State {
   isSidebarShowed: boolean
   employee: EmployeeType | undefined
   cards: ServiceCardType[]
+  cardsSearchValue: string
+  employeesSearchValue: string
+}
+
+function generateString(length) {
+  const characters ='абвгдеёжзиклмнопрстуфхцчшщьыэюя';
+  let result = ' ';
+  const charactersLength = characters.length;
+  for ( let i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result.charAt(1).toUpperCase() + result.slice(2);
 }
 
 const cards = []
@@ -31,20 +43,20 @@ const employees = []
 for (let i = 0; i < 37; i++) {
   employees.push({
     id: Math.floor(Math.random() * (10000 - 1) + 1),
-    name: 'Andrew',
-    position: 'admin',
-    age: 50
+    name: generateString(Math.floor(Math.random() * (10 - 5) + 5)),
+    position: Math.floor(Math.random() * (3 - 1) + 1) === 1 ? 'admin' : 'guest',
+    age: Math.floor(Math.random() * (100 - 1) + 1)
   })
   cards.push({
     id: Math.floor(Math.random() * (10000 - 1) + 1),
-    name: 'andrew',
+    name: generateString(Math.floor(Math.random() * (10 - 5) + 5)),
     birthday: new Date(),
-    education: 'gymnasium №3',
-    experience: 'little startup',
-    phone: 77902942,
+    education: generateString(10),
+    experience: generateString(10),
+    phone: Math.floor(Math.random() * (99999999 - 11111111) + 11111111),
     photo: (Math.random() + 1).toString(36).substring(7),
-    position: 'admin',
-    university: 'technical college of informatics and low'
+    position: Math.floor(Math.random() * (3 - 1) + 1) === 1 ? 'admin' : 'guest',
+    university: generateString(10)
   })
 }
 
@@ -53,7 +65,9 @@ export default createStore<State>({
     employees,
     cards,
     isSidebarShowed: false,
-    employee: {id: 0, name: '', position: 'admin', age: 0}
+    employee: {id: 0, name: '', position: 'admin', age: 0},
+    cardsSearchValue: '',
+    employeesSearchValue: ''
   },
   mutations: {
     addCard(state, card: ServiceCardType) {
@@ -83,12 +97,18 @@ export default createStore<State>({
     },
     updateEmployee(state, employee: EmployeeType) {
       state.employee = employee
+    },
+    changeCardsSearchValue(state, value: string) {
+      state.cardsSearchValue = value
+    },
+    changeEmployeesSearchValue(state, value: string) {
+      state.employeesSearchValue = value
     }
   },
   actions: {},
   getters: {
     employees(state): EmployeeType[] {
-      return state.employees
+      return state.employees.filter(e => e.name.includes(state.employeesSearchValue))
     },
     isSidebarShowed(state): boolean {
       return state.isSidebarShowed
@@ -97,7 +117,13 @@ export default createStore<State>({
       return state.employee
     },
     cards(state): ServiceCardType[] {
-      return state.cards
+      return state.cards.filter(c => c.name.includes(state.cardsSearchValue))
+    },
+    cardsSearchValue(state): string {
+      return state.cardsSearchValue
+    },
+    employeesSearchValue(state): string {
+      return state.employeesSearchValue
     }
   }
 })

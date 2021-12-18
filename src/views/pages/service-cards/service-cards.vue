@@ -108,33 +108,6 @@ export default class ServiceCards extends Vue {
   background: white;
   width: 100%;
 
-
-  //i can't remove that because on this width % stop reducing size
-  @media(max-width: 1200px) {
-    width: 95%;
-  }
-  @media(max-width: 1150px) {
-    width: 90%;
-  }
-  @media(max-width: 1100px) {
-    width: 85%;
-  }
-  @media(max-width: 1050px) {
-    width: 80%;
-  }
-  @media(max-width: 1000px) {
-    width: 90%;
-  }
-  @media(max-width: 950px) {
-    width: 85%;
-  }
-  @media(max-width: 800px) {
-    width: 100%;
-  }
-  @media(max-width: 400px) {
-    width: 85%;
-  }
-
   .info {
     height: 52px;
     width: 100%;

@@ -1,10 +1,10 @@
 <template>
   <div class="small-table-container">
     <div class="search">
-      <input type="text" class="input" placeholder="Поиск.."/>
+      <input type="text" class="input" placeholder="Поиск.."  :value="$store.getters.cardsSearchValue" @input="$store.commit('changeCardsSearchValue', $event.target.value)"/>
       <button class="btn"><el-icon :size="20"><search/></el-icon></button>
     </div>
-    <div class="table" v-for="(card, index) in $store.state.cards"
+    <div class="table" v-for="(card, index) in $store.getters.cards"
          :key="card.id">
       <div v-if="index > (activePage - 1)*12 - 1 && index < activePage*12 || activePage === 1 && index < 12">
         <cards-small-table-item
@@ -94,10 +94,11 @@ export default class CardsSmallTable extends Vue {
       height: 100%;
       margin-right: 6px;
       border: 1px solid #CED4DE;
+      padding-left: 30px;
+      color: #232235;
 
       &::placeholder {
         color: #BEBFC3;
-        padding-left: 30px;
         font-size: 15px;
       }
     }

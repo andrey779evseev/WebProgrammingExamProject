@@ -1,7 +1,7 @@
 <template>
   <div class="big-table-container">
     <div class="search">
-      <input type="text" class="input" placeholder="Поиск.."/>
+      <input type="text" class="input" placeholder="Поиск.." :value="$store.getters.cardsSearchValue" @input="$store.commit('changeCardsSearchValue', $event.target.value)"/>
       <button class="btn">Поиск</button>
     </div>
     <div class="table">
@@ -19,7 +19,7 @@
         <span class="col-name-square"></span>
       </div>
       <div
-          v-for="(card, index) in $store.state.cards"
+          v-for="(card, index) in $store.getters.cards"
           :key="card.id"
       >
         <div v-if="index > (activePage - 1)*12 - 1 && index < activePage*12 || activePage === 1 && index < 12">
@@ -111,10 +111,11 @@ export default class CardsBigTable extends Vue {
       height: 100%;
       margin-right: 6px;
       border: 1px solid #CED4DE;
+      padding-left: 30px;
+      color: #232235;
 
       &::placeholder {
         color: #BEBFC3;
-        padding-left: 30px;
         font-size: 15px;
       }
     }
@@ -137,7 +138,6 @@ export default class CardsBigTable extends Vue {
 
     .row {
       display: flex;
-      height: 35px;
       margin-top: 1px;
 
       .col-name {
@@ -146,18 +146,15 @@ export default class CardsBigTable extends Vue {
         font-weight: 600;
         margin-right: 1px;
         color: #25274F;
-        height: 100%;
         display: flex;
         align-items: center;
         padding: 5px;
-        width: calc((100% - 70px) / 9);
-        overflow-x: auto;
-        white-space: nowrap;
+        flex: 1;
+        word-break: break-all;
       }
 
       .col-name-square {
         width: 35px;
-        height: 100%;
         background: #C8D1DE;
       }
     }

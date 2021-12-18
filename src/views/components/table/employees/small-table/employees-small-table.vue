@@ -1,13 +1,13 @@
 <template>
   <div class="table-container-small">
     <div class="search-small">
-      <input type="text" class="search-input-small" placeholder="Поиск..">
+      <input type="text" class="search-input-small" placeholder="Поиск.."  :value="$store.getters.employeesSearchValue" @input="$store.commit('changeEmployeesSearchValue', $event.target.value)">
       <button class="search-btn-small">
         <img src="~@assets/icons/search.svg" alt="search" class="search-btn-small-icon">
       </button>
     </div>
     <div class="table-small"
-         v-for="(employee, index) in $store.state.employees" :key="employee.id"
+         v-for="(employee, index) in $store.getters.employees" :key="employee.id"
     >
       <employees-small-table-item
           :employee="employee"
@@ -82,6 +82,7 @@ export default class EmployeesSmallTable extends Vue {
       padding: 9px 0 8px 20px;
       height: 35px;
       width: 90%;
+      color: #232235;
 
       &::placeholder {
         color: #BEBFC3;

@@ -1,7 +1,7 @@
 <template>
   <div class="table-container-big">
     <div class="search">
-      <input type="text" class="input" placeholder="Поиск.."/>
+      <input type="text" class="input" placeholder="Поиск.."  :value="$store.getters.employeesSearchValue" @input="$store.commit('changeEmployeesSearchValue', $event.target.value)"/>
       <button class="btn">Поиск</button>
     </div>
     <div class="table">
@@ -15,7 +15,7 @@
       </div>
       <div
           style="margin-top: 1px;"
-          v-for="(employee, index) in $store.state.employees"
+          v-for="(employee, index) in $store.getters.employees"
           :key="employee.id"
       >
         <employees-big-table-item
@@ -90,10 +90,11 @@ export default class EmployeesBigTable extends Vue {
       height: 35px;
       margin-right: 6px;
       border: 1px solid #CED4DE;
+      padding-left: 30px;
+      color: #232235;
 
       &::placeholder {
         color: #BEBFC3;
-        padding-left: 30px;
         font-size: 15px;
       }
     }
