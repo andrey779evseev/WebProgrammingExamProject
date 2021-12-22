@@ -1,6 +1,7 @@
 <template>
   <div class="modal">
     <div class="modal-container">
+<!--      форма для создания сотрудника-->
       <div class="modal-info">
         <span class="title">{{ employee.id !== 0 ? 'Редактировние сотрудника' : 'Добавление сотрудника' }}</span>
         <button class="close" @click="changeIsModalShowed(false); clearEmployee()">
@@ -43,23 +44,28 @@ import {EmployeeType} from '@/store'
   name: 'employees-modal'
 })
 export default class EmployeesModal extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() isModalShowed!: boolean
+  @Prop() employee: EmployeeType
+  //функции для обновления значения приходящего из родительской компоненты
   @Emit('update:isModalShowed') changeIsModalShowed(value: boolean) {
     return value
   }
-  @Prop() employee: EmployeeType
   @Emit('update:employee') changeEmployee(employee: EmployeeType) {
     return employee
   }
+  // обявление свойств которые в будушем используются как переменные
   selectOptions = [
     {value: 'admin', label: 'Администратор'},
     {value: 'guest', label: 'Гость'}
   ]
 
+  // очистка введеных данных сотрудника
   clearEmployee() {
     this.changeEmployee({id: 0, name: '', position: 'admin', age: 0})
   }
 
+  //сохранение сотрудника
   saveEmployee() {
     if(this.employee.id !== 0) {
       this.$store.commit('updateEmployees', this.employee)
@@ -74,6 +80,7 @@ export default class EmployeesModal extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .modal {
   position: fixed;
   top: 0;

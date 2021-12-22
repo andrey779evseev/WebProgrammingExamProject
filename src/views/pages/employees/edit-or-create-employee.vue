@@ -7,6 +7,7 @@
       <span class="modal-title">{{ employee.id !== 0 ? 'Редактирование сотрудника' : 'Добавление сотрудника' }}</span>
     </div>
     <div class="my-modal-content">
+<!--      форма для создания сотрудника-->
       <div class="modal-input-container modal-initials">
         <span class="modal-input-label">ФИО</span>
         <input type="text" class="modal-input" v-model="employee.name"/>
@@ -41,19 +42,24 @@ import {EmployeeType} from '@/store'
   name: 'edit-or-create-employee'
 })
 export default class EditOrCreateEmployee extends Vue {
+  // обявление свойств которые в будушем используются как переменные
   selectOptions = [
     {value: 'admin', label: 'Администратор'},
     {value: 'guest', label: 'Гость'}
   ]
   employee: EmployeeType
+  // функция отрабатываящяя перед прогрузкой шаблона html
   beforeMount() {
     this.employee = this.$store.getters.employee
   }
 
+  // функция возврашения на предыдущюю страницу
   goBack() {
     this.$router.push({name: 'employees-without-modal'})
     this.$store.commit('updateEmployee', {id: 0, name: '', position: 'admin', age: 0})
   }
+
+  // функция сохранения сотрудника
   saveEmployee() {
     if(this.$store.getters.employee.id !== 0)
       this.$store.commit('updateEmployees', this.employee)
@@ -69,6 +75,7 @@ export default class EditOrCreateEmployee extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .modal-container {
   display: flex;
   flex-direction: column;

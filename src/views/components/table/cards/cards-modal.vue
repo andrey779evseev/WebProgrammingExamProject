@@ -1,5 +1,6 @@
 <template>
   <div class="modal">
+<!--    форма для создания карточки сотрудника-->
     <div class="modal-container">
       <div class="modal-info">
         <span class="title">{{ card.id !== 0 ? 'Редактировние служебной карты' : 'Добавлеие служебной карты' }}</span>
@@ -85,19 +86,18 @@ import {DeleteFilled} from '@element-plus/icons'
   }
 })
 export default class CardsModal extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() isModalShowed!: boolean
-
+  @Prop() card: ServiceCardType
+  @Prop() getSrc!: (key: string) => string
+  //функции для обновления значения приходящего из родительской компоненты
   @Emit('update:isModalShowed') changeIsModalShowed(value: boolean) {
     return value
   }
-
-  @Prop() card: ServiceCardType
-
   @Emit('update:card') changeCard(card: ServiceCardType) {
     return card
   }
-
-  @Prop() getSrc!: (key: string) => string
+  // обявление свойств которые в будушем используются как переменные
   photo = ''
   photoInput = ''
   selectOptions = [
@@ -107,6 +107,7 @@ export default class CardsModal extends Vue {
   dialogImageUrl: string = ''
   dialogVisible: boolean = false
 
+  // очитска введенны данных карты сотрудника
   clearCard() {
     this.changeCard({
       id: 0,
@@ -121,6 +122,7 @@ export default class CardsModal extends Vue {
     })
   }
 
+  // созранение карты сотрудника
   saveCard() {
     if (this.card.id !== 0) {
       this.$store.commit('updateCard', this.card)
@@ -136,6 +138,7 @@ export default class CardsModal extends Vue {
     this.dialogImageUrl = ''
   }
 
+  // созранение изображения в локальное хранилише в виде base64 строки
   saveImage(file) {
     const reader = new FileReader()
     reader.onloadend = () => {
@@ -148,6 +151,7 @@ export default class CardsModal extends Vue {
     reader.readAsDataURL(file)
   }
 
+  // удаление изображения из локального хранилиша
   removeImage() {
     if (localStorage)
       localStorage.removeItem(this.card.photo)
@@ -157,6 +161,7 @@ export default class CardsModal extends Vue {
     this.photoInput = ''
   }
 
+  // даты которые нельзя выбрать, для компонеты datepicker
   disabledDate(time) {
     return time.getTime() > Date.now()
   }
@@ -164,6 +169,7 @@ export default class CardsModal extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .modal {
   position: fixed;
   top: 0;

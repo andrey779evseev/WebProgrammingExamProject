@@ -4,6 +4,7 @@
       <span class="title">Служебные карты</span>
       <button class="btn" @click="isModalShowed = true">Добавить карту</button>
     </div>
+<!--    компонент большой таблицы -->
     <cards-big-table
         v-model:active-page="activePage"
         :get-src="getSrc"
@@ -14,6 +15,7 @@
         v-model:delete-name="deleteName"
         :get-formatted-date="getFormattedDate"
     ></cards-big-table>
+<!--    компонент маленькой таблицы для адаптивности-->
     <cards-small-table
         v-model:active-page="activePage"
         :get-src="getSrc"
@@ -26,12 +28,14 @@
     ></cards-small-table>
   </div>
   <div v-if="isModalShowed">
+<!--    модальное окно для создания-->
     <cards-modal
         v-model:is-modal-showed="isModalShowed"
         :get-src="getSrc"
         v-model:card="card"
     ></cards-modal>
   </div>
+<!--  модальное окно для подтверждения удаления-->
   <el-dialog
       v-model="deleteDialog"
       title="Удаление служебной карты"
@@ -65,6 +69,7 @@ import CardsBigTable from '@views/components/table/cards/big-table/cards-big-tab
   }
 })
 export default class ServiceCards extends Vue {
+  // обявление свойств которые в будушем используются как переменные
   activePage: number = 1
   deleteDialog: boolean = false
   deleteIndex: number
@@ -83,6 +88,7 @@ export default class ServiceCards extends Vue {
     name: ''
   }
 
+  // получение форматированной даты в строке
   getFormattedDate(date: Date) {
     const year = date.getFullYear()
     let month = (1 + date.getMonth()).toString()
@@ -92,6 +98,7 @@ export default class ServiceCards extends Vue {
     return day + '.' + month + '.' + year
   }
 
+  // получение картинки из локального хранилища по id
   getSrc(id: string) {
     if (localStorage)
       return localStorage.getItem(id)
@@ -100,6 +107,7 @@ export default class ServiceCards extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .container {
   display: flex;
   flex-direction: column;

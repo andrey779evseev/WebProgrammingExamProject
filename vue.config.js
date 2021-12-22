@@ -1,7 +1,7 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const isProduction = process.env.NODE_ENV === "production";
-
+// файлы необходимые для корректной работы проекта
 const plugins = [];
 if (isProduction) {
     plugins.push(

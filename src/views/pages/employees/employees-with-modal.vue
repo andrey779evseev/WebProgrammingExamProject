@@ -4,6 +4,7 @@
       <span class="title">Сотрудники</span>
       <button class="btn" @click="isModalShowed = true;">Добавить сотрудника</button>
     </div>
+    <!--    компонент большой таблицы -->
     <employees-big-table
         v-model:active-page="activePage"
         v-model:delete-employee="deleteEmployee"
@@ -11,6 +12,7 @@
         v-model:is-modal-showed="isModalShowed"
         :employee-page="1"
     ></employees-big-table>
+    <!--    компонент маленькой таблицы для адаптивности-->
     <employees-small-table
         v-model:active-page="activePage"
         v-model:delete-employee="deleteEmployee"
@@ -19,10 +21,12 @@
         :employee-page="1"
     ></employees-small-table>
   </div>
+  <!--    модальное окно для создания-->
   <employees-modal  v-if="isModalShowed"
       v-model:is-modal-showed="isModalShowed"
       v-model:employee="employee"
   ></employees-modal>
+  <!--  модальное окно для подтверждения удаления-->
   <el-dialog
       v-model="deleteDialog"
       title="Удаление сотрудника"
@@ -56,6 +60,7 @@ import EmployeesBigTable from '@views/components/table/employees/big-table/emplo
   }
 })
 export default class EmployeesWithModal extends Vue {
+  // обявление свойств которые в будушем используются как переменные
   activePage: number = 1
   isModalShowed: boolean = false
   employee: EmployeeType = {id: 0, name: '', position: 'admin', age: 0}
@@ -63,6 +68,7 @@ export default class EmployeesWithModal extends Vue {
   deleteIndex: number
   deleteName: string
 
+  // функция для удаления сотрудника из масива по индексу
   deleteEmployee(index: number) {
     this.deleteDialog = true
     this.deleteIndex = index
@@ -72,6 +78,7 @@ export default class EmployeesWithModal extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .container {
   display: flex;
   flex-direction: column;

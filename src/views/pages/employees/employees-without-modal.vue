@@ -4,17 +4,20 @@
       <span class="title">Сотрудники</span>
       <button class="btn" @click="$router.push({name: 'edit-or-create-employee'})">Добавить сотрудника</button>
     </div>
+    <!--    компонент большой таблицы -->
     <employees-big-table
         v-model:active-page="activePage"
         v-model:delete-employee="deleteEmployee"
         :employee-page="2"
     ></employees-big-table>
+    <!--    компонент маленькой таблицы для адаптивности-->
     <employees-small-table
         v-model:active-page="activePage"
         v-model:delete-employee="deleteEmployee"
         :employee-page="2"
     ></employees-small-table>
   </div>
+  <!--  модальное окно для подтверждения удаления-->
   <el-dialog
       v-model="deleteDialog"
       title="Удаление сотрудника"
@@ -46,11 +49,13 @@ import EmployeesBigTable from '@views/components/table/employees/big-table/emplo
   }
 })
 export default class EmployeesWithoutModal extends Vue {
+  // обявление свойств которые в будушем используются как переменные
   activePage: number = 1
   deleteDialog: boolean = false
   deleteIndex: number
   deleteName: string
 
+  // функция для удаления сотрудника из масива по индексу
   deleteEmployee(index: number) {
     this.deleteDialog = true
     this.deleteIndex = index
@@ -61,6 +66,7 @@ export default class EmployeesWithoutModal extends Vue {
 
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .container {
   display: flex;
   flex-direction: column;

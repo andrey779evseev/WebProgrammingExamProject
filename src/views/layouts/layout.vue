@@ -1,4 +1,5 @@
 <template>
+<!--  макет повторяющийся для всез страниц-->
   <div class="layout">
     <layout-header></layout-header>
     <div class="container-custom">
@@ -30,7 +31,9 @@ export default class Layout extends Vue {
 
 
 <style lang="less">
+// здесь используется не css а препроцессор less css
 body {
+  // подключение кастомного шрифта
   @font-face {
     font-family: Gilroy;
     //noinspection CssUnknownTarget

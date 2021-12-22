@@ -1,6 +1,7 @@
 <template>
   <div class="sidebar" :class="{ 'show': $store.getters.isSidebarShowed }">
     <nav>
+<!--      ссылки на странички для меню-->
       <router-link class="menu-item" :to="{ name: EmployeesWithModal }">
         <img src="~@assets/icons/people.svg" alt="people" class="icon"><span class="name">Сотрудники (модальное)</span>
       </router-link>
@@ -28,6 +29,7 @@ import {Postcard, SetUp} from '@element-plus/icons'
   }
 })
 export default class LayoutSidebar extends Vue {
+  //пути для страничек в меню
   EmployeesWithModal = EMPLOYEES_WITH_MODAL
   EmployeesWithoutModal = EMPLOYEES_WITHOUT_MODAL
   ServiceCards = SERVICE_CARDS
@@ -35,6 +37,7 @@ export default class LayoutSidebar extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .show {
   display: block !important;
 

@@ -1,8 +1,11 @@
 <template>
+  <!--    пагинация-->
   <div class="pagination">
+<!--    кнопка назад-->
     <button class="btn arrow" :disabled="!hasPrev" @click="prevPage">
       <img src="~@assets/icons/arrow-left.svg" alt="arrow-left">
     </button>
+<!--    первая кнопка с цифрой-->
     <button
         class="btn"
         :class="{'active-btn' : showingPagesButtons[0] === activePage}"
@@ -10,6 +13,7 @@
     >
       {{ showingPagesButtons[0] }}
     </button>
+<!--    вторая кнопка с цифрой-->
     <button
         class="btn"
         :class="{'active-btn' : showingPagesButtons[1] === activePage}"
@@ -18,6 +22,7 @@
     >
       {{ showingPagesButtons[1] }}
     </button>
+<!--    третья кнопка с цифрой-->
     <button
         class="btn"
         :class="{'active-btn' : showingPagesButtons[2] === activePage}"
@@ -26,6 +31,7 @@
     >
       {{ showingPagesButtons[2] }}
     </button>
+<!--    кнопка вперед-->
     <button class="btn arrow" :disabled="!hasNext" @click="nextPage">
       <img src="~@assets/icons/arrow-right.svg" alt="arrow-right">
     </button>
@@ -39,14 +45,17 @@ import {Options, Prop, Vue, Watch} from 'vue-property-decorator'
   name: 'pagination'
 })
 export default class Pagination extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() pageName!: 'employees' | 'cards'
   @Prop({type: Number}) activePage!: number
   @Prop() changePage!: (page:number) => number
+  // обявление свойств которые в будушем используются как переменные
   totalPages: number = 1
   showingPagesButtons: number[] = []
   hasNext: boolean = false
   hasPrev: boolean = false
 
+  // функция которая срабатывает при изменении значения "$store.state.employees.length"
   @Watch('$store.state.employees.length')
   onEmployeesChange() {
     if(this.pageName !== 'employees')
@@ -72,6 +81,7 @@ export default class Pagination extends Vue {
       this.hasPrev = true
   }
 
+  // функция которая срабатывает при изменении значения "$store.state.cards.length"
   @Watch('$store.state.cards.length')
   onCardsChange() {
     if(this.pageName !== 'cards')
@@ -97,6 +107,7 @@ export default class Pagination extends Vue {
       this.hasPrev = true
   }
 
+  // функция срабатывающяя стразу после создания странички
   created() {
     if(this.pageName === 'employees')
       this.totalPages = Math.ceil(this.$store.state.employees.length / 12)
@@ -110,6 +121,8 @@ export default class Pagination extends Vue {
     if (this.totalPages > 3)
       this.hasNext = true
   }
+
+  // функция выбора странички
   selectPage(page: number) {
     this.changePage(page)
     if(page === this.showingPagesButtons[2])
@@ -118,6 +131,7 @@ export default class Pagination extends Vue {
       this.prevPage()
   }
 
+  //переход на следующюю страничку
   nextPage() {
     if (this.showingPagesButtons[2] + 1 <= this.totalPages) {
       this.showingPagesButtons[0] = this.showingPagesButtons[1]
@@ -127,7 +141,7 @@ export default class Pagination extends Vue {
       this.hasNext = this.showingPagesButtons[2] + 1 <= this.totalPages
     }
   }
-
+  // переход на предыдущюю страничку
   prevPage() {
     if (this.showingPagesButtons[0] - 1 > 0) {
       this.showingPagesButtons[0] = this.showingPagesButtons[0] - 1
@@ -141,6 +155,7 @@ export default class Pagination extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .pagination {
   height: 26px;
   display: flex;

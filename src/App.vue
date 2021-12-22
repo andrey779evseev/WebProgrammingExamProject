@@ -7,10 +7,12 @@ import { Vue } from 'vue-property-decorator'
 
 export default class AppComponent extends Vue {
   created() {}
+  // главная корневая компонента
 }
 </script>
 
 <style>
+/*переопределение общих стилей*/
 * {
   margin: 0;
   padding: 0;

@@ -27,6 +27,7 @@ export default class LayoutHeader extends Vue {
 }
 </script>
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .header {
   height: 74px;
   background: #232235;

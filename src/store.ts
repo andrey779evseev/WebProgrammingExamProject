@@ -1,5 +1,7 @@
 import {createStore} from 'vuex'
 
+
+// описание типов для обьектов
 export interface EmployeeType {
   id: number
   name: string
@@ -19,6 +21,7 @@ export interface ServiceCardType {
   university: string
 }
 
+// описание типа хранимых данных в хранилише
 export interface State {
   employees: EmployeeType[]
   isSidebarShowed: boolean
@@ -28,6 +31,7 @@ export interface State {
   employeesSearchValue: string
 }
 
+// функция генерирующая случайную строку
 function generateString(length) {
   const characters ='абвгдеёжзиклмнопрстуфхцчшщьыэюя';
   let result = ' ';
@@ -38,6 +42,7 @@ function generateString(length) {
   return result.charAt(1).toUpperCase() + result.slice(2);
 }
 
+// случайная генерация элементов массива : сотркудников и карт сотрудников
 const cards = []
 const employees = []
 for (let i = 0; i < 37; i++) {
@@ -60,8 +65,10 @@ for (let i = 0; i < 37; i++) {
   })
 }
 
+// создание экземпляра хранилиша по ранее описаному типу
 export default createStore<State>({
   state: {
+    // данные
     employees,
     cards,
     isSidebarShowed: false,
@@ -70,6 +77,7 @@ export default createStore<State>({
     employeesSearchValue: ''
   },
   mutations: {
+    // мутации для изменения даннх
     addCard(state, card: ServiceCardType) {
       state.cards.push(card)
     },
@@ -105,8 +113,9 @@ export default createStore<State>({
       state.employeesSearchValue = value
     }
   },
-  actions: {},
+  actions: {},// экшэны для получения данных с сервера
   getters: {
+    // геттэры для динамического получения данных
     employees(state): EmployeeType[] {
       return state.employees.filter(e => e.name.includes(state.employeesSearchValue))
     },

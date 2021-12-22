@@ -1,4 +1,5 @@
 <template>
+<!--  строка большой таблицы сотрудников-->
   <div class="row"
        v-if="index > (activePage - 1)*12 - 1 && index < activePage*12 || activePage === 1 && index < 12">
     <span class="col-cell col-name-id">{{ employee.id }}</span>
@@ -30,6 +31,7 @@ import {EmployeeType} from '@/store'
   name: 'employees-big-table-item'
 })
 export default class EmployeesBigTableItem extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() employeePage!: number
   @Prop() index!: number
   @Prop() employee!: EmployeeType
@@ -41,6 +43,7 @@ export default class EmployeesBigTableItem extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .row {
   width: 100%;
   height: 35px;

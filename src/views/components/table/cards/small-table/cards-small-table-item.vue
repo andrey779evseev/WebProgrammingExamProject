@@ -1,4 +1,5 @@
 <template>
+<!--  строка маленькой таблицы карточек сотрудников-->
   <div class="small-table-item">
     <div class="small-table-names">
       <span class="col-name">Фото</span>
@@ -41,6 +42,7 @@ import {ServiceCardType} from '@/store'
   name: 'cards-small-table-item'
 })
 export default class CardsSmallTableItem extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() getSrc!: (key:string) => string
   @Prop() card!: ServiceCardType
   @Prop() changeCard!: (card: ServiceCardType) => ServiceCardType
@@ -54,6 +56,7 @@ export default class CardsSmallTableItem extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .small-table-item {
   display: flex;
   margin-bottom: 10px;

@@ -1,4 +1,5 @@
 <template>
+<!--  большая таблица карточек сотрудников-->
   <div class="big-table-container">
     <div class="search">
       <input type="text" class="input" placeholder="Поиск.." :value="$store.getters.cardsSearchValue" @input="$store.commit('changeCardsSearchValue', $event.target.value)"/>
@@ -18,6 +19,7 @@
         <span class="col-name-square" style="margin-right: 1px;"></span>
         <span class="col-name-square"></span>
       </div>
+<!--      цикл по массиву карточек сотрудников-->
       <div
           v-for="(card, index) in $store.getters.cards"
           :key="card.id"
@@ -37,6 +39,7 @@
         </div>
       </div>
     </div>
+<!--    пагинация-->
     <pagination
         page-name="cards"
         v-model:changePage="changeActivePage"
@@ -60,35 +63,36 @@ import Pagination from '@views/components/pagination.vue'
 })
 export default class CardsBigTable extends Vue {
   @Prop() activePage!: number
+  @Prop() getSrc!: (key: string) => string
+  @Prop() isModalShowed!: boolean
+  @Prop() card!: ServiceCardType
+  @Prop() deleteDialog!: boolean
+  @Prop() deleteIndex: number
+  @Prop() deleteName: string
+  @Prop() getFormattedDate!: (date: Date) => string
   @Emit('update:activePage') changeActivePage(page: number) {
     return page
   }
-  @Prop() getSrc!: (key: string) => string
-  @Prop() isModalShowed!: boolean
   @Emit('update:isModalShowed') changeIsModalShowed(value: boolean) {
     return value
   }
-  @Prop() card!: ServiceCardType
   @Emit('update:card') changeCard(card: ServiceCardType) {
     return card
   }
-  @Prop() deleteDialog!: boolean
   @Emit('update:deleteDialog') changeDeleteDialog(value: boolean) {
     return value
   }
-  @Prop() deleteIndex: number
   @Emit('update:deleteIndex') changeDeleteIndex(index: number) {
     return index
   }
-  @Prop() deleteName: string
   @Emit('update:deleteName') changeDeleteName(name: string) {
     return name
   }
-  @Prop() getFormattedDate!: (date: Date) => string
 }
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .big-table-container {
   height: 100%;
   padding: 35px 35px 51px 29px;

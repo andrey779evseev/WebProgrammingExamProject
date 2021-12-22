@@ -1,4 +1,4 @@
-{
+{// файлы необходимые для корректной работы проекта
   "compilerOptions": {
     "resolveJsonModule": true,
     "target": "es5",

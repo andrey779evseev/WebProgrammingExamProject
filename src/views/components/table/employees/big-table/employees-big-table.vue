@@ -1,4 +1,5 @@
 <template>
+<!--  большая таблица сотрудников-->
   <div class="table-container-big">
     <div class="search">
       <input type="text" class="input" placeholder="Поиск.."  :value="$store.getters.employeesSearchValue" @input="$store.commit('changeEmployeesSearchValue', $event.target.value)"/>
@@ -13,6 +14,7 @@
         <span class="col-name-square" style="margin-right: 1px;"></span>
         <span class="col-name-square"></span>
       </div>
+<!--      цикл по массиву сотрудников-->
       <div
           style="margin-top: 1px;"
           v-for="(employee, index) in $store.getters.employees"
@@ -51,17 +53,19 @@ import EmployeesBigTableItem from '@views/components/table/employees/big-table/e
   }
 })
 export default class EmployeesBigTable extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() employeePage!: number
   @Prop() activePage!: number
+  @Prop() deleteEmployee!: (index: number) => void
+  @Prop() employee: EmployeeType | undefined
+  @Prop() isModalShowed: boolean
+  //функции для обновления значения приходящего из родительской компоненты
   @Emit('update:activePage') changeActivePage(page: number) {
     return page
   }
-  @Prop() deleteEmployee!: (index: number) => void
-  @Prop() employee: EmployeeType | undefined
   @Emit('update:employee') changeEmployee(employee: EmployeeType) {
     return employee
   }
-  @Prop() isModalShowed: boolean
   @Emit('update:isModalShowed') changeIsModalShowed(value: boolean) {
     return value
   }
@@ -70,6 +74,7 @@ export default class EmployeesBigTable extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .table-container-big {
   height: 100%;
   padding: 35px 35px 51px 29px;

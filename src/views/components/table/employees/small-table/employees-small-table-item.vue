@@ -1,4 +1,5 @@
 <template>
+<!--  строка маленькой таблицы-->
   <div class="table-small-cols"
        v-if="index > (activePage - 1)*12 - 1 && index < activePage*12 || activePage === 1 && index < 12">
     <div class="table-small-row">
@@ -41,6 +42,7 @@ import {EmployeeType} from '@/store'
   name: 'employees-small-table-item'
 })
 export default class EmployeesSmallTableItem extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() employeePage!: number
   @Prop() index!: number
   @Prop() employee!: EmployeeType
@@ -52,6 +54,7 @@ export default class EmployeesSmallTableItem extends Vue {
 </script>
 
 <style scoped lang="less">
+// здесь используется не css а препроцессор less css
 .table-small-cols {
   display: flex;
   flex-direction: column;

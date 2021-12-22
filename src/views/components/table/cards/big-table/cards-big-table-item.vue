@@ -1,4 +1,5 @@
 <template>
+<!--  строка большой таблицы карточек сотрудников-->
   <div class="row">
     <div class="col-cell" style="display: flex; justify-content:center; align-items:center;">
       <img :src="getSrc(card.photo)" alt="" height="35">
@@ -28,6 +29,7 @@ import {ServiceCardType} from '@/store'
   name: 'cards-big-table-item'
 })
 export default class CardsBigTableItem extends Vue {
+  //обявление параметров приходящих из родительской компоненты
   @Prop() getSrc!: (key:string) => string
   @Prop() card!: ServiceCardType
   @Prop() changeCard!: (card: ServiceCardType) => ServiceCardType

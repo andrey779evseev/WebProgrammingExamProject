@@ -10,7 +10,7 @@ import EmployeesWithoutModal from '@views/pages/employees/employees-without-moda
 import EditOrCreateEmployee from '@views/pages/employees/edit-or-create-employee.vue'
 import ServiceCards from '@views/pages/service-cards/service-cards.vue'
 const Layout = () => import('@/views/layouts/layout.vue')
-
+//файл описывающий все возможные маршруты в проекте и какие компоненты должны на них отображатся а также дополнительные параметры
 const routes: Array<RouteRecordRaw> = [
   {
     name: 'home',
